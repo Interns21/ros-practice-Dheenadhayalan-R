@@ -1,0 +1,2 @@
+my_codes:panda_moveit_config
+-DPYTHON_EXECUTABLE=/usr/bin/python3.9 -DCATKIN_DEVEL_PREFIX=/home/dheena/Documents/my_practice_ws/chessbot/devel -DCMAKE_INSTALL_PREFIX=/home/dheena/Documents/my_practice_ws/chessbot/install -G Unix Makefiles

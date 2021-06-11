@@ -1,0 +1,8 @@
+prefix=/home/dheena/Documents/my_practice_ws/chessbot/install
+
+Name: my_codes
+Description: Description of my_codes
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

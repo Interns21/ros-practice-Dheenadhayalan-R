@@ -1,0 +1,2 @@
+turtlebot3_simulations/turtlebot3_fake:turtlebot3_simulations/turtlebot3_gazebo:turtlebot3_simulations/turtlebot3_simulations:wanderbot
+-DPYTHON_EXECUTABLE=/usr/bin/python3.9 -DCATKIN_DEVEL_PREFIX=/home/dheena/Documents/my_practice_ws/wanderbot_ws/devel -DCMAKE_INSTALL_PREFIX=/home/dheena/Documents/my_practice_ws/wanderbot_ws/install -G Unix Makefiles
