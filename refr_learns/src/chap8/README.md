@@ -6,7 +6,7 @@ Simple teleop program which considers accleration and deceleration. Scale of lin
 2) Run key_to_twist.py with required parameters which publish 'Twist' messages to 'cmd_vel' topic according to the key press
 
 ## Parameters of key_to_twist.py:
-~linear_scale - denotes maximum linear speed of robot
-~angular_scale - denotes maximum angular velocity robot can achieive
-~linear_accel - denotes linear accleration of robot
-~angular_accel - denotes angular accleration of robot
+1) ~linear_scale - denotes maximum linear speed of robot
+2) ~angular_scale - denotes maximum angular velocity robot can achieive
+3) ~linear_accel - denotes linear accleration of robot
+4) ~angular_accel - denotes angular accleration of robot
