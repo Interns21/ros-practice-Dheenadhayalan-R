@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_msgs
   rospy
   std_msgs
+  moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -121,6 +122,9 @@ include_directories(
 # include
   ${catkin_INCLUDE_DIRS}
 )
+
+add_executable(robot_model_state scripts/robot_model_state)
+target_link_libraries(robot_model_state ${catkin_LIBRARIES})
 
 ## Declare a C++ library
 # add_library(${PROJECT_NAME}
