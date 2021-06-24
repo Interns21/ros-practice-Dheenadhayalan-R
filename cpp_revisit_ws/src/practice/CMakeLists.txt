@@ -16,7 +16,7 @@ find_package(catkin REQUIRED COMPONENTS
 )
 
 ## System dependencies are found with CMake's conventions
-# find_package(Boost REQUIRED COMPONENTS system)
+find_package(Boost REQUIRED COMPONENTS system)
 
 
 ## Uncomment this if the package has a setup.py. This macro ensures
@@ -121,6 +121,7 @@ catkin_package(
 include_directories(
   include
   ${catkin_INCLUDE_DIRS}
+  ${Boost_INCLUDE_DIRS}
 )
 
 ## Declare a C++ library
@@ -142,6 +143,8 @@ add_executable(demo_topic_publisher src/demo_topic_publisher.cpp)
 add_executable(demo_topic_subscriber src/demo_topic_subscriber.cpp)
 add_executable(demo_service_server src/demo_service_server.cpp)
 add_executable(demo_service_client src/demo_service_client.cpp)
+add_executable(demo_action_server src/demo_action_server.cpp)
+add_executable(demo_action_client src/demo_action_client.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -157,6 +160,8 @@ add_dependencies(demo_topic_publisher ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 add_dependencies(demo_topic_subscriber ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(demo_service_server practice_generate_messages_cpp)
 add_dependencies(demo_service_client practice_generate_messages_cpp)
+add_dependencies(demo_action_server practice_generate_messages_cpp)
+add_dependencies(demo_action_client practice_generate_messages_cpp)
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -167,6 +172,8 @@ target_link_libraries(demo_topic_publisher ${catkin_LIBRARIES})
 target_link_libraries(demo_topic_subscriber ${catkin_LIBRARIES})
 target_link_libraries(demo_service_server ${catkin_LIBRARIES})
 target_link_libraries(demo_service_client ${catkin_LIBRARIES})
+target_link_libraries(demo_action_server ${catkin_LIBRARIES})
+target_link_libraries(demo_action_client ${catkin_LIBRARIES})
 
 #############
 ## Install ##

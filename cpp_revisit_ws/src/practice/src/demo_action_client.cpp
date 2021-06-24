@@ -27,12 +27,12 @@ int main(int argc, char **argv){
   a_client.sendGoal(goal);
 
   bool finished_before_timeout = a_client.waitForResult(ros::Duration(atoi(argv[2])));
-  ac.cancelGoal();
+  a_client.cancelGoal();
 
   if(finished_before_timeout){
     actionlib::SimpleClientGoalState state = a_client.getState();
     ROS_INFO("Action finished: %s", state.toString().c_str());
-    ac.cancelGoal();
+    a_client.cancelGoal();
   }
   else{
     ROS_INFO("Action did not finish before the time out.");

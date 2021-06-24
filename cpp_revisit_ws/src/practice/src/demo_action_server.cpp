@@ -5,7 +5,7 @@
 class demo_actionAction{
 protected:
     ros::NodeHandle n;
-    actionlib::SimpleActionServer<practice/demo_actionAction> a_server;
+    actionlib::SimpleActionServer<practice::demo_actionAction> a_server;
     practice::demo_actionFeedback feedback;
     practice::demo_actionResult result;
     std::string action_name;
@@ -38,7 +38,7 @@ protected:
         if(!ros::ok()){
           result.final_number = progress;
           a_server.setAborted(result, "I failed!");
-          ROS_INFO("%s shutting down", action_name);
+          ROS_INFO("%s shutting down", action_name.c_str());
           break;
         }
 
@@ -46,7 +46,7 @@ protected:
           return;
         }
 
-        if(goal->goal_number < progress){
+        if(progress < goal->goal_number){
           ROS_INFO("Setting to goal %d / %d", ++progress, goal->goal_number);
           feedback.current_number = progress;
           a_server.publishFeedback(feedback);
@@ -57,12 +57,12 @@ protected:
           a_server.setSucceeded(result);
           break;
         }
-        loop_rate.wait();
+        loop_rate.sleep();
       }
     }
 };
 
-int int main(int argc, char const **argv){
+int main(int argc, char **argv){
   ros::init(argc, argv, "demo_action");
   ROS_INFO("Starting Demo Action Server");
   demo_actionAction demo_action_obj(ros::this_node::getName());
