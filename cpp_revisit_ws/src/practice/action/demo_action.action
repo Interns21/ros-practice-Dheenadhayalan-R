@@ -1,5 +1,5 @@
 int32 goal_number
 ---
-int32 final_final
+int32 final_number
 ---
 int32 current_number
