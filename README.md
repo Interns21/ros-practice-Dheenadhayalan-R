@@ -8,3 +8,4 @@ This repo consists of four main catkin workspaces that I created and used to lea
 * wanderbot_ws - Catkin workspace created for obstracle avoidance robot
 * ros_with_cpp - Catkin workspace created to practice code on C++
 * cpp_revisit_ws - Catkin workspace created to practice C++ from different material
+* robot_modeling_ws - Catkin workspace created to learn about 3D modeling in ROS
