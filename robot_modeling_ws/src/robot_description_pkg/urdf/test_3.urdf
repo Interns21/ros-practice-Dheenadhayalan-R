@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<robot name="test_3">
+
+  <link name="bottom">
+    <visual>
+      <geometry>
+        <box size="0.1 0.1 0.01"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.11 0.11 0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.01"/>
+    </collision>
+  </link>
+
+  <joint name="bottom_base_joint" type="fixed">
+    <parent link="bottom"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0.01"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.1" radius="0.05"/>
+      </geometry>
+      <origin xyz="0 0 0.05"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.11" radius="0.06"/>
+      </geometry>
+      <origin xyz="0 0 0.055"/>
+    </collision>
+  </link>
+
+  <joint name="base_vertical_move" type="fixed">
+    <parent link="base_link"/>
+    <child link="vertical_move_link"/>
+    <origin xyz="0 0 0.05"/>
+  </joint>
+
+  <link name="vertical_move_link">
+    <visual>
+      <geometry>
+        <cylinder length="0.2" radius="0.01"/>
+      </geometry>
+      <origin xyz="0 0 0.1"/>
+    </visual>
+    <collision>
+      <geometry>
+        <cylinder length="0.21" radius="0.02"/>
+      </geometry>
+      <origin xyz="0 0 0.105"/>
+    </collision>
+  </link>
+
+  <joint name="vertical_horizontal" type="fixed">
+    <parent link="vertical_move_link"/>
+    <child link="horizontal_move_link"/>
+    <origin xyz="0 0 0.1"/>
+  </joint>
+
+  <link name="horizontal_move_link">
+    <visual>
+      <geometry>
+        <box size="0.01 0.01 0.1"/>
+      </geometry>
+      <origin xyz="0 0 0.005" rpy="1.57 0 0"/>
+    </visual>
+    <collision>
+      <geometry>
+        <box size="0.02 0.02 0.12"/>
+      </geometry>
+      <origin xyz="0 0 0.005" rpy="1.57 0 0"/>
+    </collision>
+  </link>
+
+</robot>
