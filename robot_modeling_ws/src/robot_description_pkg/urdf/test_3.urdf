@@ -37,10 +37,12 @@
     </collision>
   </link>
 
-  <joint name="base_vertical_move" type="fixed">
+  <joint name="base_vertical_move" type="revolute">
     <parent link="base_link"/>
     <child link="vertical_move_link"/>
-    <origin xyz="0 0 0.05"/>
+    <origin xyz="0 0 0.1"/>
+    <limit effort="30" velocity="1.0" lower="-1.57" upper="1.57"/>
+    <axis xyz="0 1 0"/>
   </joint>
 
   <link name="vertical_move_link">
@@ -61,7 +63,7 @@
   <joint name="vertical_horizontal" type="fixed">
     <parent link="vertical_move_link"/>
     <child link="horizontal_move_link"/>
-    <origin xyz="0 0 0.1"/>
+    <origin xyz="0 0 0.2"/>
   </joint>
 
   <link name="horizontal_move_link">
