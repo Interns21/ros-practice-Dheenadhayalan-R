@@ -1,0 +1,251 @@
+<?xml version="1.0"?>
+
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="panda_based_arm">
+
+  <xacro:property name="link_1_length" value="0.1"/>
+  <xacro:property name="link_2_length" value="0.1"/>
+  <xacro:property name="link_3_length" value="0.05"/>
+  <xacro:property name="link_4_length" value="0.1"/>
+  <xacro:property name="link_5_length" value="0.025"/>
+  <xacro:property name="link_6_length" value="0.075"/>
+  <xacro:property name="link_7_length" value="0.05"/>
+  <xacro:property name="link_8_length" value="0.05"/>
+  <xacro:property name="link_9_length" value="0.025"/>
+  <xacro:property name="link_10_length" value="0.1"/>
+  <xacro:property name="link_11_length" value="0.05"/>
+  <xacro:property name="link_12_radius" value="0.0125"/>
+  <xacro:property name="link_13_length" value="0.05"/>
+  <xacro:property name="hand_height" value="0.05"/>
+  <xacro:property name="hand_size" value="0.1 0.025 ${hand_height}"/>
+
+  <xacro:macro name="cylinder_link" params="name length xyz rpy">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <cylinder length="${length}" radius="0.0125"/>
+        </geometry>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="box_link" params="name length xyz rpy">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <box size="0.025 0.025 ${length}"/>
+        </geometry>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </visual>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="join_links" params="name parent child xyz axis lower upper">
+    <joint name="${name}" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${xyz}"/>
+      <axis xyz="${axis}"/>
+      <limit effort="300" velocity="0.1" lower="${lower}" upper="${upper}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="fix_links" params="name parent child xyz">
+    <joint name="${name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${xyz}"/>
+    </joint>
+  </xacro:macro>
+
+  <link name="origin"/>
+
+  <joint name="origin_joint" type="fixed">
+    <parent link="origin"/>
+    <child link="base_link"/>
+    <origin xyz="0 0 0"/>
+  </joint>
+
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <box size="0.4 0.4 0.01"/>
+      </geometry>
+      <origin xyz="0 0 0.005"/>
+    </visual>
+  </link>
+
+  <xacro:join_links name="base-link_1"
+    parent="base_link"
+    child="link_1"
+    xyz="0 0 0.01"
+    axis="0 0 1"
+    lower="-3.14"
+    upper="3.14"/>
+
+    <link name="link_1">
+      <visual>
+        <geometry>
+          <cylinder length="${link_1_length}" radius="0.05"/>
+        </geometry>
+        <origin xyz="0 0 ${link_1_length/2}"/>
+      </visual>
+    </link>
+
+    <xacro:fix_links name="link_1-link_2"
+      parent="link_1"
+      child="link_2"
+      xyz="0 0 ${link_1_length}"/>
+
+    <xacro:box_link name="link_2"
+      length="${link_2_length}"
+      xyz="0 0 ${link_2_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:join_links name="link_2-link_3"
+      parent="link_2"
+      child="link_3"
+      xyz="0.0125 0 ${link_2_length}"
+      axis="1 0 0"
+      lower="0"
+      upper="1.57"/>
+
+    <xacro:cylinder_link name="link_3"
+      length="${link_3_length}"
+      xyz="0 0 0"
+      rpy="0 1.57 0"/>
+
+    <xacro:fix_links name="link_3-link_4"
+      parent="link_3"
+      child="link_4"
+      xyz="0 0 0"/>
+
+    <xacro:box_link name="link_4"
+      length="${link_4_length}"
+      xyz="0.0125 0 ${link_4_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:join_links name="link_4-link_5"
+      parent="link_4"
+      child="link_5"
+      xyz="0.0125 0 ${link_4_length}"
+      axis="0 0 1"
+      lower="-1.57"
+      upper="1.57"/>
+
+    <xacro:cylinder_link name="link_5"
+      length="${link_5_length}"
+      xyz="0 0 ${link_5_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:fix_links name="link_5-link_6"
+      parent="link_5"
+      child="link_6"
+      xyz="0 0 ${link_5_length}"/>
+
+    <xacro:box_link name="link_6"
+      length="${link_6_length}"
+      xyz="0 0 ${link_6_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:join_links name="link_6-link_7"
+      parent="link_6"
+      child="link_7"
+      xyz="-0.0125 0 ${link_6_length}"
+      axis="1 0 0"
+      lower="-1.57"
+      upper="1.57"/>
+
+    <xacro:cylinder_link name="link_7"
+      length="${link_7_length}"
+      xyz="0 0 0"
+      rpy="0 1.57 0"/>
+
+    <xacro:fix_links name="link_7-link_8"
+      parent="link_7"
+      child="link_8"
+      xyz="0 0 0"/>
+
+    <xacro:box_link name="link_8"
+      length="${link_8_length}"
+      xyz="-0.0125 0 ${link_8_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:join_links name="link_8-link_9"
+      parent="link_8"
+      child="link_9"
+      xyz="-0.0125 0 ${link_8_length}"
+      axis="0 0 1"
+      lower="-1.57"
+      upper="1.57"/>
+
+    <xacro:cylinder_link name="link_9"
+      length="${link_9_length}"
+      xyz="0 0 ${link_9_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:fix_links name="link_9-link_10"
+      parent="link_9"
+      child="link_10"
+      xyz="0 0 ${link_9_length}"/>
+
+    <xacro:box_link name="link_10"
+      length="${link_10_length}"
+      xyz="0 0 ${link_10_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:join_links name="link_10-link_11"
+      parent="link_10"
+      child="link_11"
+      xyz="0.0125 0 ${link_10_length}"
+      axis="1 0 0"
+      lower="-1.57"
+      upper="1.57"/>
+
+    <xacro:cylinder_link name="link_11"
+      length="${link_11_length}"
+      xyz="0 0 0"
+      rpy="0 1.57 0"/>
+
+    <xacro:fix_links name="link_11-link_12"
+      parent="link_11"
+      child="link_12"
+      xyz="0.025 0 0"/>
+
+    <link name="link_12">
+      <visual>
+        <geometry>
+          <sphere radius="${link_12_radius}"/>
+        </geometry>
+        <origin xyz="0 0 0"/>
+      </visual>
+    </link>
+
+    <xacro:join_links name="link_12-link_13"
+      parent="link_12"
+      child="link_13"
+      xyz="0 0 0"
+      axis="0 0 1"
+      lower="-3.14"
+      upper="3.14"/>
+
+    <xacro:cylinder_link name="link_13"
+      length="${link_13_length}"
+      xyz="0 0 ${link_13_length/2}"
+      rpy="0 0 0"/>
+
+    <xacro:fix_links name="link_13-hand"
+      parent="link_13"
+      child="hand"
+      xyz="0 0 ${link_13_length}"/>
+
+    <link name="hand">
+      <visual>
+        <geometry>
+          <box size="${hand_size}"/>
+        </geometry>
+        <origin xyz="0 0 ${hand_height/2}"/>
+      </visual>
+    </link>
+
+</robot>
