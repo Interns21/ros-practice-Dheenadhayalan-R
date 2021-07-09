@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot name="test_4">
+
+  <link name="origin"/>
+
+  <joint name="origin_joint" type="fixed">
+    <parent link="origin"/>
+    <child link="shape"/>
+  </joint>
+
+  <link name="shape">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/cube.stl"
+          scale="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+  </link>
+
+</robot>
