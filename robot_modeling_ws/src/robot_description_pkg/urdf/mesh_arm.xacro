@@ -1,0 +1,168 @@
+<?xml version="1.0"?>
+<robot name="seven_dof_arm_using_mesh" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
+  <material name="Black">
+    <color rgba="0.5 0.5 0.5 1"/>
+  </material>
+
+  <material name="White">
+    <color rgba="1 1 1 1"/>
+  </material>
+
+  <xacro:property name="base_link_mesh" value="package://robot_description_pkg/meshes/base_link.stl"/>
+  <xacro:property name="link_1_mesh" value="package://robot_description_pkg/meshes/link_1.stl"/>
+  <xacro:property name="link_2_mesh" value="package://robot_description_pkg/meshes/link_2.stl"/>
+  <xacro:property name="link_3_mesh" value="package://robot_description_pkg/meshes/link_3.stl"/>
+  <xacro:property name="link_4_mesh" value="package://robot_description_pkg/meshes/link_4.stl"/>
+  <xacro:property name="link_5_mesh" value="package://robot_description_pkg/meshes/link_3.stl"/>
+  <xacro:property name="link_6_mesh" value="package://robot_description_pkg/meshes/link_4.stl"/>
+  <xacro:property name="link_7_mesh" value="package://robot_description_pkg/meshes/link_5.stl"/>
+
+  <xacro:macro name="inertial_matrix" params="mass ixx ixy ixz iyy iyz izz">
+    <inertial>
+      <mass value="${mass}"/>
+      <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+    </inertial>
+  </xacro:macro>
+
+  <xacro:macro name="make_link" params="name mesh xyz rpy color">
+    <link name="${name}">
+      <visual>
+        <geometry>
+          <mesh filename="${mesh}" scale="0.001 0.001 0.001"/>
+        </geometry>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+        <material name="${color}"/>
+      </visual>
+      <collision>
+        <geometry>
+          <mesh filename="${mesh}" scale="0.0011 0.0011 0.0011"/>
+        </geometry>
+        <origin xyz="${xyz}" rpy="${rpy}"/>
+      </collision>
+    </link>
+  </xacro:macro>
+
+  <xacro:macro name="join_links" params="name parent child xyz axis lower upper">
+    <joint name="${name}" type="revolute">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${xyz}"/>
+      <axis xyz="${axis}"/>
+      <limit effort="300" velocity="0.1" lower="${lower}" upper="${upper}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="fix_links" params="name parent child xyz">
+    <joint name="${name}" type="fixed">
+      <parent link="${parent}"/>
+      <child link="${child}"/>
+      <origin xyz="${xyz}"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:make_link name="base_link"
+    mesh="${base_link_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="White"/>
+
+  <xacro:join_links name="base_link-link_1"
+    parent="base_link"
+    child="link_1"
+    xyz="0 0 0.06"
+    axis="0 0 1"
+    lower="-3.14"
+    upper="3.14"/>
+
+  <xacro:make_link name="link_1"
+    mesh="${link_1_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="Black"/>
+
+  <xacro:join_links name="link_1-link_2"
+    parent="link_1"
+    child="link_2"
+    xyz="0 0 0.08"
+    axis="1 0 0"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_2"
+    mesh="${link_2_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="White"/>
+
+  <xacro:join_links name="link_2-link_3"
+    parent="link_2"
+    child="link_3"
+    xyz="0 0 0.1"
+    axis="1 0 0"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_3"
+    mesh="${link_3_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="Black"/>
+
+  <xacro:join_links name="link_3-link_4"
+    parent="link_3"
+    child="link_4"
+    xyz="0 0 0.06"
+    axis="0 0 1"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_4"
+    mesh="${link_4_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="White"/>
+
+  <xacro:join_links name="link_4-link_5"
+    parent="link_4"
+    child="link_5"
+    xyz="0 0 0.06"
+    axis="1 0 0"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_5"
+    mesh="${link_5_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 3.14"
+    color="Black"/>
+
+  <xacro:join_links name="link_5-link_6"
+    parent="link_5"
+    child="link_6"
+    xyz="0 0 0.06"
+    axis="0 0 1"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_6"
+    mesh="${link_6_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 3.14"
+    color="White"/>
+
+  <xacro:join_links name="link_6-link_7"
+    parent="link_6"
+    child="link_7"
+    xyz="0 0 0.06"
+    axis="1 0 0"
+    lower="-1.57"
+    upper="1.57"/>
+
+  <xacro:make_link name="link_7"
+    mesh="${link_7_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="Black"/>
+
+</robot>
