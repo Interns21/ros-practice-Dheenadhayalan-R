@@ -18,14 +18,7 @@
   <xacro:property name="link_6_mesh" value="package://robot_description_pkg/meshes/link_4.stl"/>
   <xacro:property name="link_7_mesh" value="package://robot_description_pkg/meshes/link_5.stl"/>
 
-  <xacro:macro name="inertial_matrix" params="mass ixx ixy ixz iyy iyz izz">
-    <inertial>
-      <mass value="${mass}"/>
-      <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
-    </inertial>
-  </xacro:macro>
-
-  <xacro:macro name="make_link" params="name mesh xyz rpy color">
+  <xacro:macro name="make_link" params="name mesh xyz rpy color mass ixx ixy ixz iyy iyz izz">
     <link name="${name}">
       <visual>
         <geometry>
@@ -40,6 +33,10 @@
         </geometry>
         <origin xyz="${xyz}" rpy="${rpy}"/>
       </collision>
+      <inertial>
+        <mass value="${mass}"/>
+        <inertia ixx="${ixx}" ixy="${ixy}" ixz="${ixz}" iyy="${iyy}" iyz="${iyz}" izz="${izz}"/>
+      </inertial>
     </link>
   </xacro:macro>
 
@@ -61,11 +58,21 @@
     </joint>
   </xacro:macro>
 
-  <xacro:make_link name="base_link"
-    mesh="${base_link_mesh}"
-    xyz="0 0 0"
-    rpy="0 0 0"
-    color="White"/>
+  <link name="base_link">
+    <visual>
+      <geometry>
+        <mesh filename="${base_link_mesh}" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+      <material name="White"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="${base_link_mesh}" scale="0.0011 0.0011 0.0011"/>
+      </geometry>
+      <origin xyz="0 0 0" rpy="0 0 0"/>
+    </collision>
+  </link>
 
   <xacro:join_links name="base_link-link_1"
     parent="base_link"
@@ -79,7 +86,11 @@
     mesh="${link_1_mesh}"
     xyz="0 0 0"
     rpy="0 0 0"
-    color="Black"/>
+    color="Black"
+    mass="0.5"
+    ixx="160347952.000000" ixy="0.073988" ixz="15663199.000000"
+    iyy="149014144.000000" iyz="0.506316"
+    izz="44131488.000000"/>
 
   <xacro:join_links name="link_1-link_2"
     parent="link_1"
@@ -93,7 +104,11 @@
     mesh="${link_2_mesh}"
     xyz="0 0 0"
     rpy="0 0 0"
-    color="White"/>
+    color="White"
+    mass="0.5"
+    ixx="320315008.000000" ixy="0.025285" ixz="1.992257"
+    iyy="295672384.000000" iyz="0.107130"
+    izz="42775932.000000"/>
 
   <xacro:join_links name="link_2-link_3"
     parent="link_2"
@@ -107,7 +122,11 @@
     mesh="${link_3_mesh}"
     xyz="0 0 0"
     rpy="0 0 0"
-    color="Black"/>
+    color="Black"
+    mass="0.5"
+    ixx="93527256.000000" ixy="0.003871" ixz="12514371.000000"
+    iyy="87003976.000000" iyz="0.035148"
+    izz="40058448.000000"/>
 
   <xacro:join_links name="link_3-link_4"
     parent="link_3"
@@ -121,7 +140,11 @@
     mesh="${link_4_mesh}"
     xyz="0 0 0"
     rpy="0 0 0"
-    color="White"/>
+    color="White"
+    mass="0.5"
+    ixx="93527256.000000" ixy="0.003871" ixz="12514371.000000"
+    iyy="87003976.000000" iyz="0.035148"
+    izz="40058448.000000"/>
 
   <xacro:join_links name="link_4-link_5"
     parent="link_4"
@@ -135,7 +158,11 @@
     mesh="${link_5_mesh}"
     xyz="0 0 0"
     rpy="0 0 3.14"
-    color="Black"/>
+    color="Black"
+    mass="0.5"
+    ixx="93527256.000000" ixy="0.003871" ixz="12514371.000000"
+    iyy="87003976.000000" iyz="0.035148"
+    izz="40058448.000000"/>
 
   <xacro:join_links name="link_5-link_6"
     parent="link_5"
@@ -149,7 +176,11 @@
     mesh="${link_6_mesh}"
     xyz="0 0 0"
     rpy="0 0 3.14"
-    color="White"/>
+    color="White"
+    mass="0.5"
+    ixx="93527256.000000" ixy="0.003871" ixz="12514371.000000"
+    iyy="87003976.000000" iyz="0.035148"
+    izz="40058448.000000"/>
 
   <xacro:join_links name="link_6-link_7"
     parent="link_6"
@@ -163,6 +194,10 @@
     mesh="${link_7_mesh}"
     xyz="0 0 0"
     rpy="0 0 0"
-    color="Black"/>
+    color="Black"
+    mass="0.5"
+    ixx="130744760.000000" ixy="0.001162" ixz="20542782.000000"
+    iyy="127046656.000000" iyz="0.004876"
+    izz="49867952.000000"/>
 
 </robot>

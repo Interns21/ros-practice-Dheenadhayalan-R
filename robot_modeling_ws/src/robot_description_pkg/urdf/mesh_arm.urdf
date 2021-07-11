@@ -46,6 +46,10 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="160347952.0" ixy="0.073988" ixz="15663199.0" iyy="149014144.0" iyz="0.506316" izz="44131488.0"/>
+    </inertial>
   </link>
   <joint name="link_1-link_2" type="revolute">
     <parent link="link_1"/>
@@ -68,6 +72,10 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="320315008.0" ixy="0.025285" ixz="1.992257" iyy="295672384.0" iyz="0.10713" izz="42775932.0"/>
+    </inertial>
   </link>
   <joint name="link_2-link_3" type="revolute">
     <parent link="link_2"/>
@@ -90,6 +98,10 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="93527256.0" ixy="0.003871" ixz="12514371.0" iyy="87003976.0" iyz="0.035148" izz="40058448.0"/>
+    </inertial>
   </link>
   <joint name="link_3-link_4" type="revolute">
     <parent link="link_3"/>
@@ -112,6 +124,10 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="93527256.0" ixy="0.003871" ixz="12514371.0" iyy="87003976.0" iyz="0.035148" izz="40058448.0"/>
+    </inertial>
   </link>
   <joint name="link_4-link_5" type="revolute">
     <parent link="link_4"/>
@@ -134,6 +150,10 @@
       </geometry>
       <origin rpy="0 0 3.14" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="93527256.0" ixy="0.003871" ixz="12514371.0" iyy="87003976.0" iyz="0.035148" izz="40058448.0"/>
+    </inertial>
   </link>
   <joint name="link_5-link_6" type="revolute">
     <parent link="link_5"/>
@@ -156,6 +176,10 @@
       </geometry>
       <origin rpy="0 0 3.14" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="93527256.0" ixy="0.003871" ixz="12514371.0" iyy="87003976.0" iyz="0.035148" izz="40058448.0"/>
+    </inertial>
   </link>
   <joint name="link_6-link_7" type="revolute">
     <parent link="link_6"/>
@@ -178,6 +202,10 @@
       </geometry>
       <origin rpy="0 0 0" xyz="0 0 0"/>
     </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="130744760.0" ixy="0.001162" ixz="20542782.0" iyy="127046656.0" iyz="0.004876" izz="49867952.0"/>
+    </inertial>
   </link>
 </robot>
 
