@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<robot name="seven_dof_arm_using_mesh" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+  <xacro:macro name="group_arm">
+    <group name="mesh_arm">
+      <chain base_link="base_link" tip_link="link_7"/>
+    </group>
+  </xacro:macro>
+</robot>

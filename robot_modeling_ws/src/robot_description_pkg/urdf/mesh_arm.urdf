@@ -10,6 +10,9 @@
   <material name="White">
     <color rgba="1 1 1 1"/>
   </material>
+  <group name="mesh_arm">
+    <chain base_link="base_link" tip_link="link_7"/>
+  </group>
   <link name="base_link">
     <visual>
       <geometry>

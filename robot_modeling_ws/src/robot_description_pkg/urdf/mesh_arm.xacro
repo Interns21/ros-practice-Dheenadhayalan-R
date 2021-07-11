@@ -9,6 +9,9 @@
     <color rgba="1 1 1 1"/>
   </material>
 
+  <xacro:include filename="$(find robot_description_pkg)/urdf/mesh_arm_grouping.xacro"/>
+  <xacro:group_arm/>
+
   <xacro:property name="base_link_mesh" value="package://robot_description_pkg/meshes/base_link.stl"/>
   <xacro:property name="link_1_mesh" value="package://robot_description_pkg/meshes/link_1.stl"/>
   <xacro:property name="link_2_mesh" value="package://robot_description_pkg/meshes/link_2.stl"/>
