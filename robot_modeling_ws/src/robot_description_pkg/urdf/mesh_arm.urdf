@@ -210,5 +210,80 @@
       <inertia ixx="130744760.0" ixy="0.001162" ixz="20542782.0" iyy="127046656.0" iyz="0.004876" izz="49867952.0"/>
     </inertial>
   </link>
+  <joint name="link_7-hand" type="fixed">
+    <parent link="link_7"/>
+    <child link="hand"/>
+    <origin xyz="0 0 0.085"/>
+  </joint>
+  <link name="hand">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/hand.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="White"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/hand.stl" scale="0.0011 0.0011 0.0011"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.5"/>
+      <inertia ixx="13535881.0" ixy="0.005851" ixz="0.209502" iyy="48692132.0" iyz="0.001552" izz="42968752.0"/>
+    </inertial>
+  </link>
+  <joint name="hand-finger" type="prismatic">
+    <parent link="hand"/>
+    <child link="finger_1"/>
+    <origin xyz="0.03 0 0.04"/>
+    <limit effort="100" lower="0" upper="-0.03" velocity="1.0"/>
+  </joint>
+  <link name="finger_1">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/finger.stl" scale="0.0011 0.0011 0.0011"/>
+      </geometry>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.25"/>
+      <inertia ixx="1640625.0" ixy="0.000262" ixz="416666.65625" iyy="1453125.5" iyz="0.000365" izz="593749.9375"/>
+    </inertial>
+  </link>
+  <joint name="hand-finger_2" type="prismatic">
+    <parent link="hand"/>
+    <child link="finger_2"/>
+    <origin xyz="-0.03 0 0.04"/>
+    <limit effort="100" lower="0" upper="0.03" velocity="1.0"/>
+    <mimic joint="hand-finger" multiplier="-1"/>
+  </joint>
+  <link name="finger_2">
+    <visual>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/finger.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <origin rpy="0 0 3.14" xyz="0 0 0"/>
+      <material name="Black"/>
+    </visual>
+    <collision>
+      <geometry>
+        <mesh filename="package://robot_description_pkg/meshes/finger.stl" scale="0.0011 0.0011 0.0011"/>
+      </geometry>
+      <origin rpy="0 0 3.14" xyz="0 0 0"/>
+    </collision>
+    <inertial>
+      <mass value="0.25"/>
+      <inertia ixx="1640625.0" ixy="0.000262" ixz="416666.65625" iyy="1453125.5" iyz="0.000365" izz="593749.9375"/>
+    </inertial>
+  </link>
 </robot>
 

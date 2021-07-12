@@ -20,6 +20,8 @@
   <xacro:property name="link_5_mesh" value="package://robot_description_pkg/meshes/link_3.stl"/>
   <xacro:property name="link_6_mesh" value="package://robot_description_pkg/meshes/link_4.stl"/>
   <xacro:property name="link_7_mesh" value="package://robot_description_pkg/meshes/link_5.stl"/>
+  <xacro:property name="hand_mesh" value="package://robot_description_pkg/meshes/hand.stl"/>
+  <xacro:property name="finger_mesh" value="package://robot_description_pkg/meshes/finger.stl"/>
 
   <xacro:macro name="make_link" params="name mesh xyz rpy color mass ixx ixy ixz iyy iyz izz">
     <link name="${name}">
@@ -202,5 +204,55 @@
     ixx="130744760.000000" ixy="0.001162" ixz="20542782.000000"
     iyy="127046656.000000" iyz="0.004876"
     izz="49867952.000000"/>
+
+  <xacro:fix_links name="link_7-hand"
+    parent="link_7"
+    child="hand"
+    xyz="0 0 0.085"/>
+
+  <xacro:make_link name="hand"
+    mesh="${hand_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="White"
+    mass="0.5"
+    ixx="13535881.000000" ixy="0.005851" ixz="0.209502"
+    iyy="48692132.000000" iyz="0.001552"
+    izz="42968752.000000"/>
+
+  <joint name="hand-finger" type="prismatic">
+    <parent link="hand"/>
+    <child link="finger_1"/>
+    <origin xyz="0.03 0 0.04"/>
+    <limit effort="100" velocity="1.0" lower="0" upper="-0.03"/>
+  </joint>
+
+  <xacro:make_link name="finger_1"
+    mesh="${finger_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 0"
+    color="Black"
+    mass="0.25"
+    ixx="1640625.000000" ixy="0.000262" ixz="416666.656250"
+    iyy="1453125.500000" iyz="0.000365"
+    izz="593749.937500"/>
+
+  <joint name="hand-finger_2" type="prismatic">
+    <parent link="hand"/>
+    <child link="finger_2"/>
+    <origin xyz="-0.03 0 0.04"/>
+    <limit effort="100" velocity="1.0" lower="0" upper="0.03"/>
+    <mimic joint="hand-finger" multiplier="-1"/>
+  </joint>
+
+  <xacro:make_link name="finger_2"
+    mesh="${finger_mesh}"
+    xyz="0 0 0"
+    rpy="0 0 3.14"
+    color="Black"
+    mass="0.25"
+    ixx="1640625.000000" ixy="0.000262" ixz="416666.656250"
+    iyy="1453125.500000" iyz="0.000365"
+    izz="593749.937500"/>
 
 </robot>
