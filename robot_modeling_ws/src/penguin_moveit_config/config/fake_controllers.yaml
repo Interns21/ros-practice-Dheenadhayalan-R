@@ -1,0 +1,18 @@
+controller_list:
+  - name: fake_penguin_arm_controller
+    joints:
+      - base_link_link_1
+      - link_1_link_2
+      - link_2_link_3
+      - link_3_link_4
+      - link_4_link_5
+      - link_5_link_6
+      - link_6_link_7
+  - name: fake_penguin_hand_controller
+    joints:
+      - hand_finger_2
+initial:  # Define initial robot poses.
+  - group: penguin_arm
+    pose: ready
+  - group: penguin_hand
+    pose: gripper_opened
