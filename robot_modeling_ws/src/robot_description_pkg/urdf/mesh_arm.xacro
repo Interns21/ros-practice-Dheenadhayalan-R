@@ -11,6 +11,12 @@
 
   <xacro:include filename="$(find robot_description_pkg)/urdf/mesh_arm_grouping.xacro"/>
   <xacro:group_arm/>
+  <xacro:group_hand/>
+  <xacro:disable_unwanted_arm_collisions/>
+  <xacro:disable_unwanted_hand_collisions/>
+  <xacro:disable_unwanted_arm_hand_collisions/>
+
+  <end_effector name="hand" parent_link="link_7" group="hand_group" parent_group="arm_group"/>
 
   <xacro:property name="base_link_mesh" value="package://robot_description_pkg/meshes/base_link.stl"/>
   <xacro:property name="link_1_mesh" value="package://robot_description_pkg/meshes/link_1.stl"/>
@@ -102,8 +108,8 @@
     child="link_2"
     xyz="0 0 0.08"
     axis="1 0 0"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-2.3"
+    upper="2.3"/>
 
   <xacro:make_link name="link_2"
     mesh="${link_2_mesh}"
@@ -120,8 +126,8 @@
     child="link_3"
     xyz="0 0 0.1"
     axis="1 0 0"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-1.8"
+    upper="1.8"/>
 
   <xacro:make_link name="link_3"
     mesh="${link_3_mesh}"
@@ -138,8 +144,8 @@
     child="link_4"
     xyz="0 0 0.06"
     axis="0 0 1"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-3.14"
+    upper="3.14"/>
 
   <xacro:make_link name="link_4"
     mesh="${link_4_mesh}"
@@ -156,8 +162,8 @@
     child="link_5"
     xyz="0 0 0.06"
     axis="1 0 0"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-1.8"
+    upper="1.8"/>
 
   <xacro:make_link name="link_5"
     mesh="${link_5_mesh}"
@@ -174,8 +180,8 @@
     child="link_6"
     xyz="0 0 0.06"
     axis="0 0 1"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-3.14"
+    upper="3.14"/>
 
   <xacro:make_link name="link_6"
     mesh="${link_6_mesh}"
@@ -192,8 +198,8 @@
     child="link_7"
     xyz="0 0 0.06"
     axis="1 0 0"
-    lower="-1.57"
-    upper="1.57"/>
+    lower="-1.8"
+    upper="1.8"/>
 
   <xacro:make_link name="link_7"
     mesh="${link_7_mesh}"

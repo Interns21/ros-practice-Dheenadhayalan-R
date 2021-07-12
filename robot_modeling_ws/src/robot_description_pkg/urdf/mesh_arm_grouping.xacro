@@ -1,8 +1,68 @@
 <?xml version="1.0"?>
 <robot name="seven_dof_arm_using_mesh" xmlns:xacro="http://www.ros.org/wiki/xacro" >
+
   <xacro:macro name="group_arm">
-    <group name="mesh_arm">
+    <group name="arm_group">
       <chain base_link="base_link" tip_link="link_7"/>
     </group>
   </xacro:macro>
+
+  <xacro:macro name="group_hand">
+    <group name="hand_group">
+      <link name="hand"/>
+      <link name="finger_1"/>
+      <link name="finger_2"/>
+      <joint name="hand-finger"/>
+      <passive_joint name="hand-finger_2"/>
+    </group>
+  </xacro:macro>
+
+  <xacro:macro name="disable_unwanted_arm_collisions">
+    <disable_collision link1="base_link" link2="link_1" reason="Adjacent"/>
+    <disable_collision link1="link_1" link2="link_2" reason="Adjacent"/>
+    <disable_collision link1="link_2" link2="link_3" reason="Adjacent"/>
+    <disable_collision link1="link_3" link2="link_4" reason="Adjacent"/>
+    <disable_collision link1="link_4" link2="link_5" reason="Adjacent"/>
+    <disable_collision link1="link_5" link2="link_6" reason="Adjacent"/>
+    <disable_collision link1="link_6" link2="link_7" reason="Adjacent"/>
+    <disable_collision link1="base_link" link2="link_2" reason="Never"/>
+    <disable_collision link1="base_link" link2="link_3" reason="Never"/>
+    <disable_collision link1="link_1" link2="link_3" reason="Never"/>
+    <disable_collision link1="link_1" link2="link_4" reason="Never"/>
+    <disable_collision link1="link_1" link2="link_5" reason="Never"/>
+    <disable_collision link1="link_2" link2="link_4" reason="Never"/>
+    <disable_collision link1="link_2" link2="link_5" reason="Never"/>
+    <disable_collision link1="link_2" link2="link_6" reason="Never"/>
+    <disable_collision link1="link_3" link2="link_5" reason="Never"/>
+    <disable_collision link1="link_3" link2="link_6" reason="Never"/>
+    <disable_collision link1="link_3" link2="link_7" reason="Never"/>
+    <disable_collision link1="link_4" link2="link_6" reason="Never"/>
+    <disable_collision link1="link_4" link2="link_7" reason="Never"/>
+    <disable_collision link1="link_5" link2="link_7" reason="Never"/>
+  </xacro:macro>
+
+  <xacro:macro name="disable_unwanted_hand_collisions">
+    <disable_collision link1="hand" link2="finger_1" reason="Adjacent"/>
+    <disable_collision link1="hand" link2="finger_2" reason="Adjacent"/>
+    <disable_collision link1="finger_1" link2="finger_2" reason="Fingers"/>
+  </xacro:macro>
+
+  <xacro:macro name="disable_unwanted_arm_hand_collisions">
+    <disable_collision link1="hand" link2="link_7" reason="Adjacent"/>
+    <disable_collision link1="hand" link2="link_6" reason="Never"/>
+    <disable_collision link1="hand" link2="link_5" reason="Never"/>
+    <disable_collision link1="hand" link2="link_4" reason="Never"/>
+    <disable_collision link1="hand" link2="link_3" reason="Never"/>
+    <disable_collision link1="finger_1" link2="link_7" reason="Never"/>
+    <disable_collision link1="finger_1" link2="link_6" reason="Never"/>
+    <disable_collision link1="finger_1" link2="link_5" reason="Never"/>
+    <disable_collision link1="finger_1" link2="link_4" reason="Never"/>
+    <disable_collision link1="finger_1" link2="link_3" reason="Never"/>
+    <disable_collision link1="finger_2" link2="link_7" reason="Never"/>
+    <disable_collision link1="finger_2" link2="link_6" reason="Never"/>
+    <disable_collision link1="finger_2" link2="link_5" reason="Never"/>
+    <disable_collision link1="finger_2" link2="link_4" reason="Never"/>
+    <disable_collision link1="finger_2" link2="link_3" reason="Never"/>
+  </xacro:macro>
+
 </robot>

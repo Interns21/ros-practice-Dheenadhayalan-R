@@ -10,9 +10,56 @@
   <material name="White">
     <color rgba="1 1 1 1"/>
   </material>
-  <group name="mesh_arm">
+  <group name="arm_group">
     <chain base_link="base_link" tip_link="link_7"/>
   </group>
+  <group name="hand_group">
+    <link name="hand"/>
+    <link name="finger_1"/>
+    <link name="finger_2"/>
+    <joint name="hand-finger"/>
+    <passive_joint name="hand-finger_2"/>
+  </group>
+  <disable_collision link1="base_link" link2="link_1" reason="Adjacent"/>
+  <disable_collision link1="link_1" link2="link_2" reason="Adjacent"/>
+  <disable_collision link1="link_2" link2="link_3" reason="Adjacent"/>
+  <disable_collision link1="link_3" link2="link_4" reason="Adjacent"/>
+  <disable_collision link1="link_4" link2="link_5" reason="Adjacent"/>
+  <disable_collision link1="link_5" link2="link_6" reason="Adjacent"/>
+  <disable_collision link1="link_6" link2="link_7" reason="Adjacent"/>
+  <disable_collision link1="base_link" link2="link_2" reason="Never"/>
+  <disable_collision link1="base_link" link2="link_3" reason="Never"/>
+  <disable_collision link1="link_1" link2="link_3" reason="Never"/>
+  <disable_collision link1="link_1" link2="link_4" reason="Never"/>
+  <disable_collision link1="link_1" link2="link_5" reason="Never"/>
+  <disable_collision link1="link_2" link2="link_4" reason="Never"/>
+  <disable_collision link1="link_2" link2="link_5" reason="Never"/>
+  <disable_collision link1="link_2" link2="link_6" reason="Never"/>
+  <disable_collision link1="link_3" link2="link_5" reason="Never"/>
+  <disable_collision link1="link_3" link2="link_6" reason="Never"/>
+  <disable_collision link1="link_3" link2="link_7" reason="Never"/>
+  <disable_collision link1="link_4" link2="link_6" reason="Never"/>
+  <disable_collision link1="link_4" link2="link_7" reason="Never"/>
+  <disable_collision link1="link_5" link2="link_7" reason="Never"/>
+  <disable_collision link1="hand" link2="finger_1" reason="Adjacent"/>
+  <disable_collision link1="hand" link2="finger_2" reason="Adjacent"/>
+  <disable_collision link1="finger_1" link2="finger_2" reason="Fingers"/>
+  <disable_collision link1="hand" link2="link_7" reason="Adjacent"/>
+  <disable_collision link1="hand" link2="link_6" reason="Never"/>
+  <disable_collision link1="hand" link2="link_5" reason="Never"/>
+  <disable_collision link1="hand" link2="link_4" reason="Never"/>
+  <disable_collision link1="hand" link2="link_3" reason="Never"/>
+  <disable_collision link1="finger_1" link2="link_7" reason="Never"/>
+  <disable_collision link1="finger_1" link2="link_6" reason="Never"/>
+  <disable_collision link1="finger_1" link2="link_5" reason="Never"/>
+  <disable_collision link1="finger_1" link2="link_4" reason="Never"/>
+  <disable_collision link1="finger_1" link2="link_3" reason="Never"/>
+  <disable_collision link1="finger_2" link2="link_7" reason="Never"/>
+  <disable_collision link1="finger_2" link2="link_6" reason="Never"/>
+  <disable_collision link1="finger_2" link2="link_5" reason="Never"/>
+  <disable_collision link1="finger_2" link2="link_4" reason="Never"/>
+  <disable_collision link1="finger_2" link2="link_3" reason="Never"/>
+  <end_effector group="hand_group" name="hand" parent_group="arm_group" parent_link="link_7"/>
   <link name="base_link">
     <visual>
       <geometry>
@@ -59,7 +106,7 @@
     <child link="link_2"/>
     <origin xyz="0 0 0.08"/>
     <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-2.3" upper="2.3" velocity="0.1"/>
   </joint>
   <link name="link_2">
     <visual>
@@ -85,7 +132,7 @@
     <child link="link_3"/>
     <origin xyz="0 0 0.1"/>
     <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-1.8" upper="1.8" velocity="0.1"/>
   </joint>
   <link name="link_3">
     <visual>
@@ -111,7 +158,7 @@
     <child link="link_4"/>
     <origin xyz="0 0 0.06"/>
     <axis xyz="0 0 1"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
   <link name="link_4">
     <visual>
@@ -137,7 +184,7 @@
     <child link="link_5"/>
     <origin xyz="0 0 0.06"/>
     <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-1.8" upper="1.8" velocity="0.1"/>
   </joint>
   <link name="link_5">
     <visual>
@@ -163,7 +210,7 @@
     <child link="link_6"/>
     <origin xyz="0 0 0.06"/>
     <axis xyz="0 0 1"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-3.14" upper="3.14" velocity="0.1"/>
   </joint>
   <link name="link_6">
     <visual>
@@ -189,7 +236,7 @@
     <child link="link_7"/>
     <origin xyz="0 0 0.06"/>
     <axis xyz="1 0 0"/>
-    <limit effort="300" lower="-1.57" upper="1.57" velocity="0.1"/>
+    <limit effort="300" lower="-1.8" upper="1.8" velocity="0.1"/>
   </joint>
   <link name="link_7">
     <visual>
