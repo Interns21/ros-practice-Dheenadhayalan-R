@@ -235,7 +235,7 @@
     <parent link="hand"/>
     <child link="finger_1"/>
     <origin xyz="0.03 0 0.04"/>
-    <limit effort="100" lower="0" upper="-0.03" velocity="1.0"/>
+    <limit effort="100" lower="-0.03" upper="0" velocity="1.0"/>
     <mimic joint="hand_finger_2" multiplier="-1"/>
   </joint>
   <link name="finger_1">
