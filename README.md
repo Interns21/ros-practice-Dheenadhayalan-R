@@ -10,7 +10,8 @@ This repo consists of four main catkin workspaces that I created and used to lea
 * cpp_revisit_ws - Catkin workspace created to practice C++ from different material
 * robot_modeling_ws - Catkin workspace created to learn about 3D modeling in ROS
 ## Seven DOF manipulator
-A custom made seven degrees of freedom manipulator using freeCAD and MeshLab whose moveit configuration package is available in robot_modeling_ws workspace under the name of penguin_moveit_config. Mesh files required for the package is available in robot_description_pkg of the same workspace.
+A custom made seven degrees of freedom manipulator using [freeCAD](https://www.freecadweb.org/) and [MeshLab](https://www.meshlab.net/#description) whose moveit configuration package is available in [robot_modeling_ws](./robot_modeling_ws) workspace under the name of [penguin_moveit_config](./robot_modeling_ws/src/penguin_moveit_config). Mesh files required for the package is available in [robot_description_pkg](./robot_modeling_ws/src/robot_description_pkg) of the same workspace.
+
 The final result of the arm is shown in the below video.
 
 https://user-images.githubusercontent.com/85285960/125417504-7cc05450-85c0-4f32-a732-9b1896419d2a.mp4
