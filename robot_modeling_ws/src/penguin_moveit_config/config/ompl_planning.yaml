@@ -172,5 +172,3 @@ penguin_hand:
     - LazyPRMstar
     - SPARS
     - SPARStwo
-  projection_evaluator: joints(hand_finger_1,hand_finger_2)
-  longest_valid_segment_fraction: 0.005

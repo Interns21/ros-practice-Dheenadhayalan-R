@@ -15,4 +15,4 @@ initial:  # Define initial robot poses.
   - group: penguin_arm
     pose: ready
   - group: penguin_hand
-    pose: gripper_opened
+    pose: gripper_open
