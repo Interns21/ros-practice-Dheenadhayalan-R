@@ -13,4 +13,5 @@ This repo consists of four main catkin workspaces that I created and used to lea
 ## Seven DOF manipulator
 A custom made seven degrees of freedom manipulator using freeCAD and MeshLab whose moveit configuration package is available in robot_modeling_ws workspace under the name of penguin_moveit_config. Mesh files required for the package is available in robot_description_pkg of the same workspace.
 The final result of the arm is shown in the below video.
-![watch the video](./results/manipulator.mp4)
+
+https://user-images.githubusercontent.com/85285960/125417504-7cc05450-85c0-4f32-a732-9b1896419d2a.mp4
