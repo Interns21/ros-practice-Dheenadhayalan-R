@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   moveit_msgs
   roscpp
   std_msgs
+  moveit_ros_planning_interface
 )
 
 ## System dependencies are found with CMake's conventions
@@ -137,6 +138,10 @@ include_directories(
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/moveit_revisit_pkg_node.cpp)
 
+add_executable(random_state src/random_state.cpp)
+add_executable(custom_goal src/custom_goal.cpp)
+add_executable(add_collision_object src/add_collision_object.cpp)
+
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
 ## target back to the shorter version for ease of user use
@@ -147,10 +152,18 @@ include_directories(
 ## same as for the library above
 # add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
+add_dependencies(random_state ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(custom_goal ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(add_collision_object ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
+target_link_libraries(random_state ${catkin_LIBRARIES})
+target_link_libraries(custom_goal ${catkin_LIBRARIES})
+target_link_libraries(add_collision_object ${catkin_LIBRARIES})
 
 #############
 ## Install ##
