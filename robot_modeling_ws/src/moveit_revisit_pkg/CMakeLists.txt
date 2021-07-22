@@ -146,6 +146,7 @@ add_executable(add_collision_object src/add_collision_object.cpp)
 add_executable(attach_detach_object src/attach_detach_object.cpp)
 add_executable(test_1 src/test_1.cpp)
 add_executable(demo_1 src/demo_1.cpp)
+add_executable(demo_2 src/demo_2.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -163,6 +164,7 @@ add_dependencies(add_collision_object ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catk
 add_dependencies(attach_detach_object ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(test_1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(demo_1 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(demo_2 ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
@@ -175,6 +177,7 @@ target_link_libraries(add_collision_object ${catkin_LIBRARIES})
 target_link_libraries(attach_detach_object ${catkin_LIBRARIES})
 target_link_libraries(test_1 ${catkin_LIBRARIES})
 target_link_libraries(demo_1 ${catkin_LIBRARIES})
+target_link_libraries(demo_2 ${catkin_LIBRARIES})
 
 #############
 ## Install ##
