@@ -55,5 +55,43 @@ int main(int argc, char** argv){
   planning_scene_diff_publisher.publish(planning_scene);
   ROS_INFO("2-Proceeding to next...");
 
+  moveit_msgs::CollisionObject remove_object;
+  remove_object.id = "box";
+  remove_object.header.frame_id = "base_link";
+  remove_object.operation = remove_object.REMOVE;
+
+  ROS_INFO("Attaching object and removing process begin...");
+  visual_tools.prompt("Press 'next' to continue...");
+  planning_scene.world.collision_objects.clear();
+  planning_scene.world.collision_objects.push_back(remove_object);
+  planning_scene.robot_state.attached_collision_objects.push_back(attached_object);
+  planning_scene_diff_publisher.publish(planning_scene);
+  ROS_INFO("3-Proceeding to next...");
+
+  moveit_msgs::AttachedCollisionObject detach_object;
+  detach_object.object.id = "box";
+  detach_object.link_name = "link_7";
+  detach_object.object.operation = attached_object.object.REMOVE;
+
+  ROS_INFO("Detaching object and adding process begin...");
+  visual_tools.prompt("Press 'next' to continue...");
+  planning_scene.robot_state.attached_collision_objects.clear();
+  planning_scene.robot_state.attached_collision_objects.push_back(detach_object);
+  planning_scene.robot_state.is_diff = true;
+  planning_scene.world.collision_objects.clear();
+  planning_scene.world.collision_objects.push_back(attached_object.object);
+  planning_scene.is_diff = true;
+  planning_scene_diff_publisher.publish(planning_scene);
+  ROS_INFO("4-Proceeding to next...");
+
+  ROS_INFO("Removing object from world");
+  visual_tools.prompt("Press 'next' to continue...");
+  planning_scene.robot_state.attached_collision_objects.clear();
+  planning_scene.world.collision_objects.clear();
+  planning_scene.world.collision_objects.push_back(remove_object);
+  planning_scene_diff_publisher.publish(planning_scene);
+
+  ROS_INFO("Code came to the end");
+
   return 0;
 }
