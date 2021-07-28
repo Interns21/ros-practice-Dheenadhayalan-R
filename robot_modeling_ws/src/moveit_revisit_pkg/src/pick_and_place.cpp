@@ -6,7 +6,13 @@
 #include <tf2_geometry_msgs/tf2_geometry_msgs.h>
 
 const double OBJECT_Z = 0.2;
-const double ALL_DIST = 0.2;
+const double ALL_DIST = 0.3;
+const double EEF_OFFSET = 0.145;
+const double EXTRA_OFFSET = 0.01;
+const double OBJECT_LENGTH = 0.06;
+const double OBJECT_WIDTH = 0.03;
+
+const double TABLE_HEIGHT = OBJECT_Z - OBJECT_LENGTH / 2;
 
 
 void openGripper(trajectory_msgs::JointTrajectory& posture){
@@ -43,9 +49,9 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group){
     tf2::Quaternion orientation;
     orientation.setRPY(-M_PI / 2, -M_PI / 4, -M_PI / 2);
     grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
-    grasps[0].grasp_pose.pose.position.x = 0.155;
+    grasps[0].grasp_pose.pose.position.x = ALL_DIST - EEF_OFFSET - EXTRA_OFFSET;
     grasps[0].grasp_pose.pose.position.y = 0;
-    grasps[0].grasp_pose.pose.position.z = 0.3;
+    grasps[0].grasp_pose.pose.position.z = OBJECT_Z;
 
     grasps[0].pre_grasp_approach.direction.header.frame_id = "base_link";
     grasps[0].pre_grasp_approach.direction.vector.x = 1.0;
@@ -83,8 +89,8 @@ void place(moveit::planning_interface::MoveGroupInterface& group){
     orientation.setRPY(0, 0, M_PI / 2);
     place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
     place_location[0].place_pose.pose.position.x = 0;
-    place_location[0].place_pose.pose.position.y = 0.3;
-    place_location[0].place_pose.pose.position.z = 0.3;
+    place_location[0].place_pose.pose.position.y = ALL_DIST - EEF_OFFSET - EXTRA_OFFSET;
+    place_location[0].place_pose.pose.position.z = OBJECT_Z;
 
     place_location[0].pre_place_approach.direction.header.frame_id = "base_link";
     place_location[0].pre_place_approach.direction.vector.z = -1.0;
@@ -115,13 +121,13 @@ void addCollisionObjects(moveit::planning_interface::PlanningSceneInterface& pla
     collision_objects[0].primitives[0].dimensions.resize(3);
     collision_objects[0].primitives[0].dimensions[0] = 0.1;
     collision_objects[0].primitives[0].dimensions[1] = 0.1;
-    collision_objects[0].primitives[0].dimensions[2] = 0.285;
+    collision_objects[0].primitives[0].dimensions[2] = TABLE_HEIGHT;
 
     collision_objects[0].primitive_poses.resize(1);
     collision_objects[0].primitive_poses[0].orientation.w = 1.0;
-    collision_objects[0].primitive_poses[0].position.x = 0.3;
+    collision_objects[0].primitive_poses[0].position.x = ALL_DIST;
     collision_objects[0].primitive_poses[0].position.y = 0;
-    collision_objects[0].primitive_poses[0].position.z = 0.285 / 2;
+    collision_objects[0].primitive_poses[0].position.z = TABLE_HEIGHT / 2;
 
     collision_objects[0].operation = collision_objects[0].ADD;
 
@@ -133,13 +139,13 @@ void addCollisionObjects(moveit::planning_interface::PlanningSceneInterface& pla
     collision_objects[1].primitives[0].dimensions.resize(3);
     collision_objects[1].primitives[0].dimensions[0] = 0.1;
     collision_objects[1].primitives[0].dimensions[1] = 0.1;
-    collision_objects[1].primitives[0].dimensions[2] = 0.285;
+    collision_objects[1].primitives[0].dimensions[2] = TABLE_HEIGHT;
 
     collision_objects[1].primitive_poses.resize(1);
     collision_objects[1].primitive_poses[0].orientation.w = 1.0;
     collision_objects[1].primitive_poses[0].position.x = 0;
-    collision_objects[1].primitive_poses[0].position.y = 0.3;
-    collision_objects[1].primitive_poses[0].position.z = 0.285 / 2;
+    collision_objects[1].primitive_poses[0].position.y = ALL_DIST;
+    collision_objects[1].primitive_poses[0].position.z = TABLE_HEIGHT / 2;
 
     collision_objects[1].operation = collision_objects[1].ADD;
 
@@ -149,15 +155,15 @@ void addCollisionObjects(moveit::planning_interface::PlanningSceneInterface& pla
     collision_objects[2].primitives.resize(1);
     collision_objects[2].primitives[0].type = collision_objects[0].primitives[0].BOX;
     collision_objects[2].primitives[0].dimensions.resize(3);
-    collision_objects[2].primitives[0].dimensions[0] = 0.03;
-    collision_objects[2].primitives[0].dimensions[1] = 0.03;
-    collision_objects[2].primitives[0].dimensions[2] = 0.03;
+    collision_objects[2].primitives[0].dimensions[0] = OBJECT_WIDTH;
+    collision_objects[2].primitives[0].dimensions[1] = OBJECT_WIDTH;
+    collision_objects[2].primitives[0].dimensions[2] = OBJECT_LENGTH;
 
     collision_objects[2].primitive_poses.resize(1);
     collision_objects[2].primitive_poses[0].orientation.w = 1.0;
-    collision_objects[2].primitive_poses[0].position.x = 0.3;
+    collision_objects[2].primitive_poses[0].position.x = ALL_DIST;
     collision_objects[2].primitive_poses[0].position.y = 0;
-    collision_objects[2].primitive_poses[0].position.z = 0.285 + 0.03 / 2;
+    collision_objects[2].primitive_poses[0].position.z = TABLE_HEIGHT + OBJECT_LENGTH / 2;
 
     collision_objects[2].operation = collision_objects[2].ADD;
 
