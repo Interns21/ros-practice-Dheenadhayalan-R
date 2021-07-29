@@ -15,3 +15,16 @@ A custom made seven degrees of freedom manipulator using [freeCAD](https://www.f
 The final result of the arm is shown in the below video.
 
 https://user-images.githubusercontent.com/85285960/125417504-7cc05450-85c0-4f32-a732-9b1896419d2a.mp4
+
+### Pick and place operation
+In this program two tables (table1, table2) and an object on table1 is spawned. Objective of the program is to pick the object from table1 and place it on table 2. [pick_and_place.cpp](./robot_modeling_ws/src/moveit_revisit_pkg/src/pick_and_place.cpp) under [moveit_revisit_pkg](./robot_modeling_ws/src/moveit_revisit_pkg) package of [robot_modeling_ws](./robot_modeling_ws) workspace is the code written for this operation. There are a total of six parameters taken in at the command line which are,
+1) table_dist - Table spawning distance from origin (default: 0.4 m)
+2) table_height - Height of the table (default: 0.2 m)
+3) object_height - Height of the object (default: 0.06 m)
+4) object_width - Width of the object (default: 0.03 m)
+5) eef_offset - End effector offset value (default: 0.145 m)
+6) extra_offset - Extra offset value (default: 0.01 m)
+
+The final result of the pick and place operation is shown in the below video.
+
+https://user-images.githubusercontent.com/85285960/127444030-3404497e-cb12-4d89-b9c4-a35610b129d3.mp4
