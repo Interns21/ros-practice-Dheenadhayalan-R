@@ -27,4 +27,4 @@ In this program two tables (table1, table2) and an object on table1 is spawned. 
 
 The final result of the pick and place operation is shown in the below video.
 
-https://user-images.githubusercontent.com/85285960/127444030-3404497e-cb12-4d89-b9c4-a35610b129d3.mp4
+https://user-images.githubusercontent.com/85285960/127445042-61dcc24c-ad8f-44c9-adaf-8e5a41e5d1ac.mp4
