@@ -64,8 +64,8 @@ void openGripper(trajectory_msgs::JointTrajectory& posture){
 
     posture.points.resize(1);
     posture.points[0].positions.resize(2);
-    posture.points[0].positions[0] = -0.03;
-    posture.points[0].positions[1] = 0.03;
+    posture.points[0].positions[0] = 0.00;
+    posture.points[0].positions[1] = 0.00;
     posture.points[0].time_from_start = ros::Duration(0.5);
 }
 
@@ -76,8 +76,8 @@ void closedGripper(trajectory_msgs::JointTrajectory& posture){
 
     posture.points.resize(1);
     posture.points[0].positions.resize(2);
-    posture.points[0].positions[0] = 0.00;
-    posture.points[0].positions[1] = 0.00;
+    posture.points[0].positions[0] = -0.03;
+    posture.points[0].positions[1] = 0.03;
     posture.points[0].time_from_start = ros::Duration(0.5);
 }
 
@@ -87,7 +87,7 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group){
 
     grasps[0].grasp_pose.header.frame_id = "base_link";
     tf2::Quaternion orientation;
-    orientation.setRPY(-M_PI / 2, 0, -M_PI / 2);
+    orientation.setRPY(-M_PI / 2, -M_PI, -M_PI / 2);
     grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
     grasps[0].grasp_pose.pose.position.x = TABLE_DIST - EEF_OFFSET - EXTRA_OFFSET;
     grasps[0].grasp_pose.pose.position.y = 0;
@@ -122,10 +122,10 @@ void place(moveit::planning_interface::MoveGroupInterface& group){
 
     place_location[0].place_pose.header.frame_id = "base_link";
     tf2::Quaternion orientation;
-    orientation.setRPY(-M_PI / 2, 0, 0);
+    orientation.setRPY(0, 0, M_PI / 2);
     place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
     place_location[0].place_pose.pose.position.x = 0;
-    place_location[0].place_pose.pose.position.y = TABLE_DIST - EEF_OFFSET - EXTRA_OFFSET;
+    place_location[0].place_pose.pose.position.y = TABLE_DIST;  // - EEF_OFFSET - EXTRA_OFFSET;
     place_location[0].place_pose.pose.position.z = TABLE_HEIGHT + OBJECT_HEIGHT / 2;
 
     place_location[0].pre_place_approach.direction.header.frame_id = "base_link";
@@ -224,12 +224,21 @@ int main(int argc, char** argv){
 
     ros::WallDuration(1.0).sleep();
 
+    ROS_INFO("Executing pick action");
     pick(group);
 
     ros::WallDuration(1.0).sleep();
 
+    ROS_INFO("Executing place action");
     place(group);
 
+    ros::WallDuration(1.0).sleep();
+
+    group.setNamedTarget("ready");
+    ROS_INFO("Moving to ready state");
+    group.move();
+
+    ROS_INFO("Program ended press ^C to exit");
     ros::waitForShutdown();
 
     return 0;
