@@ -122,7 +122,7 @@ void place(moveit::planning_interface::MoveGroupInterface& group){
 
     place_location[0].place_pose.header.frame_id = "base_link";
     tf2::Quaternion orientation;
-    orientation.setRPY(0, 0, M_PI);
+    orientation.setRPY(0, 0, M_PI / 2);
     place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
     place_location[0].place_pose.pose.position.x = 0;
     place_location[0].place_pose.pose.position.y = TABLE_DIST;  // - EEF_OFFSET - EXTRA_OFFSET;
