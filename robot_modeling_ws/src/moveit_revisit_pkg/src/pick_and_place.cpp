@@ -87,7 +87,7 @@ void pick(moveit::planning_interface::MoveGroupInterface& move_group){
 
     grasps[0].grasp_pose.header.frame_id = "base_link";
     tf2::Quaternion orientation;
-    orientation.setRPY(-M_PI / 2, -M_PI, -M_PI / 2);
+    orientation.setRPY(-M_PI / 2, 0, -M_PI / 2);
     grasps[0].grasp_pose.pose.orientation = tf2::toMsg(orientation);
     grasps[0].grasp_pose.pose.position.x = TABLE_DIST - EEF_OFFSET - EXTRA_OFFSET;
     grasps[0].grasp_pose.pose.position.y = 0;
@@ -122,7 +122,7 @@ void place(moveit::planning_interface::MoveGroupInterface& group){
 
     place_location[0].place_pose.header.frame_id = "base_link";
     tf2::Quaternion orientation;
-    orientation.setRPY(0, 0, M_PI / 2);
+    orientation.setRPY(0, 0, M_PI);
     place_location[0].place_pose.pose.orientation = tf2::toMsg(orientation);
     place_location[0].place_pose.pose.position.x = 0;
     place_location[0].place_pose.pose.position.y = TABLE_DIST;  // - EEF_OFFSET - EXTRA_OFFSET;
