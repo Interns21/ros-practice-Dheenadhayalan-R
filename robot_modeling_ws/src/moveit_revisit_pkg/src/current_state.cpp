@@ -32,7 +32,7 @@ int main(int argc, char** argv){
     double rpy[3];
     tf2::Quaternion quaternion;
     tf2::fromMsg(pose.orientation, quaternion);
-    tf2::Matrix3x3(quaternion).getEulerYPR(rpy[2], rpy[1], rpy[0]);
+    tf2::Matrix3x3(quaternion).getRPY(rpy[0], rpy[1], rpy[2]);
 
     ROS_INFO_STREAM("Position of the movegroup is" << std::endl << pos[0] << " " << pos[1] << " " << pos[2]);
     ROS_INFO_STREAM("Orientation of the movegroup is" << std::endl << rpy[0] << " " << rpy[1] << " " << rpy[2]);
