@@ -1,0 +1,10 @@
+<launch>
+  <arg name="model"/>
+  <arg name="file"/>
+  <param name="robot_description" textfile="$(find robot_description_pkg)/urdf/$(arg file)"/>
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher">
+    <rosparam param="source_list">["/rotate_state"]</rosparam>
+  </node>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find robot_description_pkg)/urdf.rviz" required="true"/>
+</launch>
